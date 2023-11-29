@@ -62,7 +62,29 @@ export interface UserDetail {
 
 }
 
-export interface SearchPageProps {
+export interface Repository{
+    repos_url: string;
+    url: string;
+}
+
+export interface SearchPageProps extends ScreenProps {
     user: UsersResponse | null;
     setUser: React.Dispatch<React.SetStateAction<UsersResponse | null>>;
+    setRepository: React.Dispatch<React.SetStateAction<Repository | null>>
 };
+
+export interface HistoricPageProps extends ScreenProps {
+    userHistoric: Array<string> | null;
+    setUserHistoric: React.Dispatch<React.SetStateAction<Array<string> | null>>;
+    setRepository: React.Dispatch<React.SetStateAction<Repository | null>>
+}
+
+export interface ScreenProps {
+    screen: string;
+    setScreen: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface UsersListProps {
+    user: UserItem | string | null;
+    setRepository: React.Dispatch<React.SetStateAction<Repository | null>>
+}
