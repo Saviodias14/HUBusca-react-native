@@ -1,0 +1,22 @@
+{
+  "extends": "expo/tsconfig.base",
+  "rootDirs": [
+    "src",
+    "tests"
+  ],
+  "baseUrl": "src",
+  "paths": {
+    "@/*": [
+      "*"
+    ]
+  },
+  "plugins": [
+    {
+      "transform": "typescript-transform-paths"
+    }
+  ],
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true
+  }
+}
