@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { mainlyColor, textColor } from "../../constants/colors";
 import axios from 'axios';
@@ -7,7 +7,6 @@ import { SafeAreaView, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SearchPageProps, UsersResponse } from "../../interfaces";
 import UsersList from "../../components/usersList";
-import _ from 'lodash';
 import Footer from "../../components/footer";
 
 

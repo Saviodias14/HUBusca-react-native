@@ -1,10 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SearchPage from './Pages/SearchPage';
+import SearchPage from './src/Pages/SearchPage';
 import React, { useState } from 'react';
-import { UserDetail, UsersResponse } from './interfaces';
-import HistoricPage from './Pages/HistoricPage';
-import RepositoriesPage from './Pages/RepositoriesPage';
+import { UserDetail, UsersResponse } from './src/interfaces';
+import HistoricPage from './src/Pages/HistoricPage';
+import RepositoriesPage from './src/Pages/RepositoriesPage';
+
 
 
 const Stack = createStackNavigator()
