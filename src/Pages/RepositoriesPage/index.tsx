@@ -6,7 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { RepositoryList, UserDetail } from "../../interfaces";
 import axios from "axios";
-
+import RepositoryHeader from "./repositoryHeader";
+import RepositoryBody from "./repositoryBody";
 
 
 export default function RepositoriesPage({ repository }: { repository: UserDetail | null }) {
@@ -30,9 +31,11 @@ export default function RepositoriesPage({ repository }: { repository: UserDetai
                 <BackArrow name="arrow-back" size={36} color={textColor}
                     onPress={() => navigate.goBack()} />
                 <Container>
-
+                    <RepositoryHeader repository={repository} />
                     <ContainerBody>
-
+                        {userData?.map((e) => <>
+                            <RepositoryBody userData={e} />
+                        </>)}
                     </ContainerBody>
                 </Container>
             </ScrollView>
