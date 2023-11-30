@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import { mainlyColor, repositoryBody, secondColor, textColor } from "../../constants/colors";
+import { SafeAreaView, ScrollView } from "react-native";
+import { mainlyColor, repositoryBody, textColor } from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";

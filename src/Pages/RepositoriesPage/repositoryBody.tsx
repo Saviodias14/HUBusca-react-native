@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { RepositoryList } from "../../interfaces"
 import { Linking, Pressable, Text, View } from "react-native"
 import styled from "styled-components/native"
