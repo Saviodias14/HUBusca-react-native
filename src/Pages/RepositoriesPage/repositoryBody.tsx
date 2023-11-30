@@ -6,14 +6,17 @@ import { mainlyColor, repositoryTitle } from "../../constants/colors"
 import formatDate from "../../helpers/formatDate"
 
 export default function RepositoryBody({ userData }: { userData: RepositoryList }) {
-    function openRepository(){
+    function openRepository() {
         Linking.openURL(userData.html_url)
-        .catch((err)=>{
-            alert('Não foi possível abrir esse repositório!')
-        })
+            .catch((err) => {
+                alert('Não foi possível abrir esse repositório!')
+            })
+    }
+    if (!userData.name) {
+        return (<></>)
     }
     return (
-        <Pressable onPress={()=>openRepository()}>
+        <Pressable onPress={() => openRepository()}>
             <Container>
                 <MainlyView>
                     <View1>
@@ -56,7 +59,7 @@ const TitleText = styled.Text`
 const Description = styled.Text`
     margin: 0 30px;
     margin-top: 10px;
-    text-align: left
+    text-align: left;
 `
 const View1 = styled.View`
     align-items: flex-start;

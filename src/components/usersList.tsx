@@ -19,7 +19,7 @@ export default function UsersList({ user, setRepository }: UsersListProps) {
         const fetchData = async () => {
             await axios.get(`${(user && typeof user === 'object' && 'url' in user) ? user?.url : user}`, {
                 headers: {
-                    Authorization: `Bearer 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`
+                    Authorization: `Bearer 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`
                 }
             })
                 .then((res) => {

@@ -12,26 +12,37 @@ import RepositoryBody from "./repositoryBody";
 
 export default function RepositoriesPage({ repository }: { repository: UserDetail | null }) {
     const [userData, setUserData] = useState<Array<RepositoryList>>()
+    const [page, setPage] = useState<number>(1)
     const navigate = useNavigation()
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get(`${repository?.repos_url}`, {
+            console.log(`${repository?.repos_url}?page=${page}`)
+            await axios.get(`${repository?.repos_url}?page=${page}`, {
                 headers: {
-                    Authorization: `Bearer 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`
+                    Authorization: `Bearer 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`
                 }
             })
                 .then((res) => {
+                    if (userData) {
+                        const data = [...userData, res.data]
+                        setUserData(data)
+                    }else{
                     setUserData(res.data)
+                }
                 })
                 .catch((err) => {
                     alert('Erro interno')
                 })
         }
         fetchData()
-    }, [])
+    }, [page])
+    function handleScroll() {
+        const number = page + 1
+        setPage(number)
+    }
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: mainlyColor, paddingTop: 50 }}>
-            <ScrollView >
+            <ScrollView onScroll={handleScroll} scrollEventThrottle={30}>
                 <BackArrow name="arrow-back" size={36} color={textColor}
                     onPress={() => navigate.goBack()} />
                 <Container>

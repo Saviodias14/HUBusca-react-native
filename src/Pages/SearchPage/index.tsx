@@ -12,16 +12,18 @@ import Footer from "../../components/footer";
 
 export default function SearchPage({ user, setUser, screen, setScreen, setRepository }: SearchPageProps) {
   const [inputValue, setInputValue] = useState('')
-    
-  if(!inputValue){
+
+  if (!inputValue) {
     setUser(null)
+    console.log(user)
   }
+
   async function handleSearch(text: string) {
     setInputValue(text)
     if (text) {
       await axios.get<UsersResponse>(`https://api.github.com/search/users?q=${text}`, {
         headers: {
-          Authorization: `Bearer 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`
+          Authorization: `Bearer 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`
         }
       })
         .then((res) => {
