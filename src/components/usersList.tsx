@@ -39,12 +39,12 @@ export default function UsersList({ user, setRepository }: UsersListProps) {
             newArray = JSON.parse(arrayUrl)
         }
         const urlIndex = newArray.indexOf(url)
-        if ( urlIndex !== -1) {
+        if (urlIndex !== -1) {
             newArray.splice(urlIndex, 1);
         }
         newArray.unshift(url)
         await AsyncStorage.setItem('arrayUrlKey', JSON.stringify(newArray));
-        setRepository({ repos_url, url })
+        setRepository(userDetail)
         navigate.navigate('repo' as never)
     }
     if (!userDetail) {
@@ -56,11 +56,17 @@ export default function UsersList({ user, setRepository }: UsersListProps) {
                 <UserImage source={{ uri: userDetail?.avatar_url }} />
             </Pressable>
             <UserData>
-                <Name>{userDetail?.name}</Name>
-                <Login>{userDetail?.login}</Login>
-                <Location ocult={Boolean(userDetail?.location === null)}>
+                <Name >
+                    {userDetail?.name}
+                </Name>
+                <Login >
+                    {userDetail?.login}
+                </Login>
+                <Location ocult={Boolean(userDetail?.location === null)} >
                     <Ionicons name="md-location" size={15} color={textColor} style={{ marginRight: 5, display: userDetail?.location ? "flex" : "none" }} />
-                    <LocationText>{userDetail?.location}</LocationText>
+                    <LocationText >
+                        {userDetail?.location}
+                    </LocationText>
                 </Location>
             </UserData>
         </Container>
@@ -91,6 +97,7 @@ const UserData = styled.View`
 display: flex;
 flex-direction:column;
 justify-content:space-between;
+flex-wrap: wrap;
 `
 
 const Name = styled.Text`
@@ -110,11 +117,10 @@ const Location = styled.View<LocationProps>`
     color:${textColor};
     display:flex;
     flex-direction:row;
-    flex-wrap: wrap;
+    max-width:90%;
 `
 const LocationText = styled.Text`
     color:${textColor};
     opacity:0.7;
     font-size: 14px;
-    max-width:90%; 
 `

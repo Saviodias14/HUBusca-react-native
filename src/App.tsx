@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SearchPage from './Pages/SearchPage';
 import React, { useState } from 'react';
-import { Repository, UserDetail, UserItem, UsersResponse } from './interfaces';
+import {  UserDetail, UsersResponse } from './interfaces';
 import HistoricPage from './Pages/HistoricPage';
 import RepositoriesPage from './Pages/RepositoriesPage';
 
@@ -13,7 +13,7 @@ export default function App() {
   const [user, setUser] = useState<UsersResponse | null>(null)
   const [screen, setScreen] = useState<string>("home")
   const [userHistoric, setUserHistoric] = useState<Array<string> | null>(null)
-  const [repository, setRepository] = useState<Repository | null>(null);
+  const [repository, setRepository] = useState<UserDetail | null>(null);
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="home">
@@ -26,7 +26,7 @@ export default function App() {
             screen={screen} setScreen={setScreen} setRepository={setRepository} /></>)}
         </Stack.Screen>
         <Stack.Screen name='repo' options={{ headerShown: false }} >
-          {() => (<><RepositoriesPage  /></>)}
+          {() => (<><RepositoriesPage repository={repository} /></>)}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
