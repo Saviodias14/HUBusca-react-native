@@ -13,12 +13,9 @@ import Footer from "../../components/footer";
 
 export default function SearchPage({ user, setUser, screen, setScreen, setRepository }: SearchPageProps) {
   const [inputValue, setInputValue] = useState('')
-  useEffect(()=>{
-    setInputValue('')
-  },[])
+    
   if(!inputValue){
     setUser(null)
-    console.log('oi')
   }
   async function handleSearch(text: string) {
     setInputValue(text)
@@ -32,7 +29,7 @@ export default function SearchPage({ user, setUser, screen, setScreen, setReposi
           setUser(res.data)
         })
         .catch((err) => {
-          console.log(err.response.data)
+          alert('Erro interno')
         })
     } else {
       setUser(null)

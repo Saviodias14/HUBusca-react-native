@@ -4,7 +4,7 @@ import { textColor } from "../constants/colors"
 import { UserDetail, UsersListProps } from "../interfaces"
 import axios from "axios"
 import { Ionicons } from "@expo/vector-icons"
-import { Pressable } from "react-native"
+import { Pressable, Text } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/native"
 
@@ -26,13 +26,13 @@ export default function UsersList({ user, setRepository }: UsersListProps) {
                     setUserDetail(res.data);
                 })
                 .catch((err) => {
-                    console.log(err.response.data);
+                    alert('Erro interno');
                 })
         }
 
         fetchData();
     }, [])
-    async function saveAndOpen(url: string, repos_url: string) {
+    async function saveAndOpenUrl(url: string, repos_url: string) {
         const arrayUrl = await AsyncStorage.getItem('arrayUrlKey')
         let newArray: Array<string> = []
         if (arrayUrl != null) {
@@ -47,12 +47,13 @@ export default function UsersList({ user, setRepository }: UsersListProps) {
         setRepository(userDetail)
         navigate.navigate('repo' as never)
     }
+
     if (!userDetail) {
         return <></>
     }
     return (
         <Container>
-            <Pressable onPress={() => saveAndOpen(userDetail.url, userDetail.repos_url)}>
+            <Pressable onPress={() => saveAndOpenUrl(userDetail.url, userDetail.repos_url)}>
                 <UserImage source={{ uri: userDetail?.avatar_url }} />
             </Pressable>
             <UserData>
@@ -60,7 +61,7 @@ export default function UsersList({ user, setRepository }: UsersListProps) {
                     {userDetail?.name}
                 </Name>
                 <Login >
-                    {userDetail?.login}
+                    {userDetail.login}
                 </Login>
                 <Location ocult={Boolean(userDetail?.location === null)} >
                     <Ionicons name="md-location" size={15} color={textColor} style={{ marginRight: 5, display: userDetail?.location ? "flex" : "none" }} />
@@ -96,8 +97,10 @@ margin: 20px;
 const UserData = styled.View`
 display: flex;
 flex-direction:column;
-justify-content:space-between;
+justify-content:flex-start;
 flex-wrap: wrap;
+min-height: 90px; 
+width: 200px;
 `
 
 const Name = styled.Text`
@@ -106,12 +109,12 @@ const Name = styled.Text`
     max-width:90%; 
 `
 const Login = styled.Text`
-    color:${textColor};
-    opacity:0.7;
-    font-size: 14px;
-    margin-bottom:30px;
-    max-width:90%; 
+   color: ${textColor};
+   opacity:0.7;
+   font-size: 14px;
+   max-width:90%;
 `
+
 const Location = styled.View<LocationProps>`
     display: ${props => (props.ocult ? 'flex' : 'none')};
     color:${textColor};
